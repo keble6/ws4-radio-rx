@@ -7,6 +7,8 @@ radio.onReceivedString(function (receivedString) {
         // Strip off the leading * and add the message to list
         // Strip off the leading * and add the message to list
         list[0] = receivedString.substr(1, 16)
+        // Send ACK to weather station 
+        radio.sendString("ACK")
     } else {
         // Add the 2nd and 3rd mesages
         list.push(receivedString)
@@ -18,6 +20,7 @@ radio.onReceivedString(function (receivedString) {
             }
             serial.writeLine("")
         }
+        radio.sendString("ACK")
     }
 })
 let list: string[] = []
